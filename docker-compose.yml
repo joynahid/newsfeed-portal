@@ -8,8 +8,6 @@ services:
     environment:
       - DEBUG=True
     volumes:
-      - .:/code
+      - ./:/code
     ports:
       - "8000:8000"
-volumes:
-  webvol
