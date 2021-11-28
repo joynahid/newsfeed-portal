@@ -1,14 +1,19 @@
 {% include "head.html" %} {% for each in top_headlines %}
-  <div class="py-4">
-    <img src="{{each.thumbnailUrl}}" width="150px" />
-    <br />
-    <a href="{{each.url}}" target="_blank">{{ each.title }}</a>
-    <br />
-    <small>{{each.source.name}}</small>
-    <p>{{each.description}}</p>
-  </div>
+<div class="py-4">
+  <img src="{{each.thumbnailUrl}}" width="300px" />
+  <br />
+  <a href="{{each.url}}" target="_blank">{{ each.title }}</a>
+  <br />
+  <small>{{each.source.name}} | {{ each.source.country }} </small>
+  <p>{{each.description}}</p>
+</div>
 {% endfor %}
 
 <div>
-    <a href="/?offset={{offset|add:10}}">Next 10</a>
+  {%if offset != -1%}
+  <a href="/?offset={{offset|add:10}}">Previous</a>
+  {% else %}
+  Reached Last Page
+  <a href="/">Go to index</a>
+  {% endif %}
 </div>
