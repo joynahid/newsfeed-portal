@@ -45,6 +45,10 @@ def populate_user_newsfeed(userId):
 
 @shared_task
 def notify_headlines():
+    """
+    Sends email to user based last sent email.
+    It won't send any email before the last news publish time
+    """
     all_settings = UserSettings.objects.all()
 
     for setting in all_settings:
@@ -55,7 +59,7 @@ def notify_headlines():
         last_notification_send = datetime.now() - timedelta(days=30)
 
         if last_notification:
-            last_notification_send = last_notification.createdAt
+            last_notification_send = last_notification.news.publishedAt
 
         if not setting.newsletter:
             continue
@@ -67,7 +71,7 @@ def notify_headlines():
 
             headlines = TopHeadlineModel.objects.filter(
                 description__contains=keyword,
-                publishedAt__gte=last_notification_send,
+                publishedAt__gt=last_notification_send,
             )
 
             for headline in headlines:

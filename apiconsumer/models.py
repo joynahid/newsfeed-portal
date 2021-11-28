@@ -5,8 +5,8 @@ class SourceModel(models.Model):
     id = models.AutoField(primary_key=True)
     sourceId = models.CharField(max_length=100, null=True)
     name = models.CharField(max_length=100)
-    description = models.TextField()
-    url = models.CharField(max_length=255)
+    description = models.TextField(null=True, blank=True)
+    url = models.CharField(max_length=255, null=True, blank=True)
     country = models.CharField(max_length=100)
 
 

@@ -5,6 +5,16 @@
   <li><a href="/user/settings">Settings</a></li>
 </ul>
 
+{% if nopreference %}
+<br />
+<br />
+<small style="color: red;">No preference is set. Set your preference in Settings to get relevant headlines</small>
+{%endif%}
+
+{%if top_headlines|length == 0%}
+  <h2 class="py-4">No Headlines found based on your preference currently. Do you know, you can set specific keywords to get notified later in your email!</h2>
+{%endif%}
+
 {% for each in top_headlines %}
 <div class="py-4">
   <img src="{{each.thumbnailUrl}}" width="300px" />
@@ -21,6 +31,5 @@
   <a href="/?offset={{offset|add:10}}">Previous</a>
   {% else %}
   Reached Last Page
-  <a href="/">Go to index</a>
   {% endif %}
 </div>

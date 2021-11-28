@@ -3,6 +3,7 @@ from django.shortcuts import render
 from django.http.request import HttpRequest
 from django.template import loader
 from django.contrib.auth.decorators import login_required
+from apiconsumer.models import TopHeadlineModel
 from .models import NewsFeedModel
 
 
@@ -26,24 +27,29 @@ def newsfeedindex(req: HttpRequest):
     if not limit:
         limit = 20
 
-    limit= int(limit)
+    limit = int(limit)
 
     limit = min(limit, 20)
 
-    feed = NewsFeedModel.objects.get(user=req.user)
+    nopreference = False
 
-    headlines = feed.topHeadlines.all()
+    try:
+        feed = NewsFeedModel.objects.get(user=req.user)
+        headlines = feed.topHeadlines.all()
+    except NewsFeedModel.DoesNotExist as e:
+        headlines = TopHeadlineModel.objects.all()
+        nopreference = True
+
     cnt = headlines.count()
-
     end = min(offset + limit, cnt)
 
     headlines = headlines[offset:end]
 
     template = loader.get_template("newsfeed/index.html")
 
-    if offset +10 >= cnt:
+    if offset + 10 >= cnt:
         offset = -1
 
     return HttpResponse(
-        template.render({"top_headlines": headlines, "offset": offset}, req)
+        template.render({"top_headlines": headlines, "offset": offset, "nopreference" : nopreference}, req)
     )

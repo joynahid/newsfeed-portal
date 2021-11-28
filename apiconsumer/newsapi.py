@@ -41,7 +41,10 @@ class NewsAPIClient:
         params["apiKey"] = self._apiKey
         params["country"] = country
         params["category"] = category
-        params["sources"] = ','.join(sources)
+        
+        if sources is not None:
+            params["sources"] = ','.join(sources)
+
         params["q"] = q
         params["pageSize"] = pageSize
         params["page"] = page

@@ -18,6 +18,6 @@ class NewsFeedModel(models.Model):
 
 class NewsNotificationModel(models.Model):
     id = models.AutoField(primary_key=True)
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     news = models.OneToOneField(TopHeadlineModel, on_delete=models.CASCADE)
     createdAt = models.DateTimeField(auto_now_add=True)

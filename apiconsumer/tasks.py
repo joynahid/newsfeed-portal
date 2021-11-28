@@ -2,10 +2,12 @@ import os
 from celery import shared_task
 from celery.utils.log import get_task_logger
 
+from user.models import UserSettings
 from .models import SourceModel, TopHeadlineModel
 from .newsapi import NewsAPIClient
 
 logger = get_task_logger(__name__)
+
 
 def feed_sources_sync():
     client = NewsAPIClient(os.getenv("NEWSAPI_KEY"))
@@ -28,17 +30,66 @@ def feed_sources_sync():
             country=qry["country"],
         )
 
+@shared_task
+def feed_headlines_based_on_country():
+    countries = []
+    for c in UserSettings.objects.values_list("countries", flat=True):
+        countries.extend(c.split(","))
+
+    countries = set(countries)
+
+    logger.info(f"Gonna fetch {len(countries)} countries")
+
+    total_created = 0
+    total_heads = 0
+    for c in countries:
+        client = NewsAPIClient(os.getenv("NEWSAPI_KEY"))
+        json = client.headlines_by_country(c)
+
+        articles = json["articles"]
+
+        for article in articles:
+            sourceId = article["source"]["id"]
+            sourceName = article["source"]["name"]
+
+            theSource, created = SourceModel.objects.get_or_create(
+                name=sourceName, country=c
+            )
+
+            total_heads += 1
+
+            try:
+                _ = TopHeadlineModel.objects.get(
+                    url=article["url"].strip(),
+                )
+            except TopHeadlineModel.DoesNotExist as e:
+                TopHeadlineModel.objects.create(
+                    title=article["title"],
+                    author=article["author"],
+                    description=article["description"],
+                    url=article["url"].strip(),
+                    thumbnailUrl=article["urlToImage"],
+                    source=theSource,
+                    publishedAt=article["publishedAt"],
+                )
+                total_created += 1
+
+    logger.info(f"Created {total_created} new Headlines out of {total_heads}")
+
+
 def feed_headlines_sync():
     SOURCES_CHUNK = 20
 
     client = NewsAPIClient(os.getenv("NEWSAPI_KEY"))
-    saved_sources = SourceModel.objects.all()
+    saved_sources = SourceModel.objects.exclude(sourceId__isnull=True)
+    
+    logger.info(f"Got {saved_sources.count()} sources", saved_sources)
 
     chunk_contains = saved_sources.count() // SOURCES_CHUNK + int(
         bool(saved_sources.count() % SOURCES_CHUNK)
     )
 
-    saved_sources_list = list(SourceModel.objects.all())
+    saved_sources_list = list(saved_sources)
 
     source_chunks = []
     next_chunk_start = 0
@@ -90,6 +141,7 @@ def feed_headlines_sync():
                     total_created += 1
 
     logger.info(f"Created {total_created} new Headlines out of {total_heads}")
+
 
 @shared_task
 def feed_sources():
