@@ -60,6 +60,7 @@ def notify_headlines():
 
         if last_notification:
             last_notification_send = last_notification.news.publishedAt
+            logger.info("Last news published at", last_notification.news.publishedAt)
 
         if not setting.newsletter:
             continue
@@ -70,23 +71,35 @@ def notify_headlines():
                 continue
 
             headlines = TopHeadlineModel.objects.filter(
-                description__contains=keyword,
+                description__icontains=keyword,
+                publishedAt__gt=last_notification_send,
+            ) | TopHeadlineModel.objects.filter(
+                title__icontains=keyword,
                 publishedAt__gt=last_notification_send,
             )
 
-            for headline in headlines:
-                NewsNotificationModel.objects.create(
-                    user=user,
-                    news=headline,
-                )
+            headline = headlines.first()
 
-                message = (
-                    f"Found a new news for you | Strativ News Portal.\nFind here: {headline.url}",
-                    f"{headline.title}",
-                    os.getenv("SEND_FROM_EMAIL"),
-                    [user.email],
-                )
-                mails.append(message)
+            logger.info(f"Found {headlines.count()} headlines for {keyword}")
 
-        number = send_mass_mail(mails)
+            if not headline:
+                continue
+
+            NewsNotificationModel.objects.create(
+                user=user,
+                news=headline,
+            )
+
+            message = (
+                f"Found a new news for you | Strativ News Portal",
+                f"Hi {user.username}! We got a new headline for you.\n\n{headline.title}\n\nFind it here {headline.url}",
+                os.getenv("SEND_FROM_EMAIL"),
+                [user.email],
+            )
+
+            mails.append(message)
+
+        logger.info(f"{len(mails)} mails are ready to send")
+
+        number = send_mass_mail(mails, fail_silently=False)
         logger.info(f"Sent {number} emails to {user}")

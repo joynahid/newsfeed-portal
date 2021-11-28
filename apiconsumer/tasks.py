@@ -83,7 +83,7 @@ def feed_headlines_sync():
     client = NewsAPIClient(os.getenv("NEWSAPI_KEY"))
     saved_sources = SourceModel.objects.exclude(sourceId__isnull=True)
     
-    logger.info(f"Got {saved_sources.count()} sources", saved_sources)
+    logger.info(f"Got {saved_sources.count()} sources")
 
     chunk_contains = saved_sources.count() // SOURCES_CHUNK + int(
         bool(saved_sources.count() % SOURCES_CHUNK)
