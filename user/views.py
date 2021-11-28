@@ -1,3 +1,4 @@
+from typing import List
 import django
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
@@ -10,7 +11,11 @@ from django.template.context import Context
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 
+from newsfeed.tasks import populate_user_newsfeed
+from apiconsumer.models import SourceModel
+
 from user.forms import LoginForm, RegistrationForm, SettingsForm
+from user.models import UserSettings
 
 
 def registration_view(req: HttpRequest):
@@ -65,7 +70,57 @@ def profile_view(req: HttpRequest):
 
 
 @login_required()
-def settings_view(req):
+def settings_view(req: HttpRequest):
     settings_template = loader.get_template("user/settings.html")
-    form = SettingsForm()
-    return HttpResponse(settings_template.render({"form": form}, req))
+
+    try:
+        setting: UserSettings = UserSettings.objects.get(user=req.user)
+    except Exception:
+        setting = None
+
+    choices = [(x.id, x.name) for x in SourceModel.objects.all()]
+
+    form = SettingsForm(choices)
+
+    if req.method == "POST":
+        form = SettingsForm(choices, req.POST)
+
+        if form.is_valid():
+            countries = form.cleaned_data.get("countries")
+            sources = form.cleaned_data.get("sources")
+            keywords = form.cleaned_data.get("keywords")
+
+            setting, _ = UserSettings.objects.get_or_create(
+                user=req.user,
+            )
+
+            setting.countries = ",".join(countries)
+            setting.keywords = keywords
+
+            new_sources = []
+            for s in sources:
+                source = SourceModel.objects.get(id=s)
+                new_sources.append(source)
+
+            setting.sources.set(new_sources, clear=True)
+            setting.save()
+
+            populate_user_newsfeed.delay(req.user.id)
+
+    if setting:
+        ctx = {
+            "sources": [x.id for x in setting.sources.all()],
+            "countries": setting.countries.split(","),
+            "keywords": setting.keywords,
+        }
+
+        form.initial = ctx
+
+    return HttpResponse(
+        settings_template.render(
+            {
+                "form": form,
+            },
+            req,
+        )
+    )

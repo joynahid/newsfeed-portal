@@ -2,15 +2,26 @@ from django import forms
 from django.contrib.auth.models import User
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit
-from django.db.models import fields
 
-from user.models import UserSettings
+from apiconsumer.const import *
+import pycountry
 
 
 class RegistrationForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ("username", "email", "password")
+
+    def save(self, commit=True):
+        instance = super(RegistrationForm, self).save(commit=False)
+
+        user = User.objects.create_user(
+            instance.username,
+            instance.email,
+            instance.password,
+        )
+
+        return user
 
     helper = FormHelper()
     helper.add_input(Submit("submit", "Submit", css_class="btn-primary"))
@@ -27,11 +38,41 @@ class LoginForm(forms.ModelForm):
     helper.form_method = "POST"
 
 
-class SettingsForm(forms.ModelForm):
-    class Meta:
-        model = UserSettings
-        exclude = ['user']
+class SettingsForm(forms.Form):
+    def __init__(self, choices, *args, **kwargs):
+        super(SettingsForm, self).__init__(*args, **kwargs)
+        self.fields["sources"] = forms.MultipleChoiceField(
+            label="Sources",
+            required=False,
+            choices=choices,
+            widget=forms.CheckboxSelectMultiple,
+        )
+
+    keywords = forms.CharField(
+        required=False,
+        widget=forms.Textarea(
+            attrs={
+                "placeholder": "Comma separated keyword list. You'll be notified in your email based on these configurations"
+            }
+        ),
+        help_text="Write keywords separated by comma",
+    )
+
+    countries = forms.MultipleChoiceField(
+        label="Countries",
+        choices=[
+            (
+                x,
+                pycountry.countries.get(alpha_2=x).name
+                if pycountry.countries.get(alpha_2=x)
+                else x,
+            )
+            for x in countries
+        ],
+        required=False,
+        widget=forms.CheckboxSelectMultiple(),
+    )
 
     helper = FormHelper()
-    helper.add_input(Submit("submit", "Submit", css_class="btn-primary"))
+    helper.add_input(Submit("submit", "Submit"))
     helper.form_method = "POST"

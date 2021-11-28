@@ -1,6 +1,6 @@
 BASE_ENDPOINT = "https://newsapi.org"
 TOP_HEADLINE_ENDPOINT = BASE_ENDPOINT + "/v2/top-headlines"
-SOURCE_ENDPOINT = TOP_HEADLINE_ENDPOINT + '/sources'
+SOURCE_ENDPOINT = TOP_HEADLINE_ENDPOINT + "/sources"
 
 # Stolen from https://newsapi.org/docs/endpoints/top-headlines
 countries = {

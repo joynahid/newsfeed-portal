@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'crispy_forms',
     'apiconsumer',
-    'user'
+    'user',
+    'newsfeed'
 ]
 
 REST_FRAMEWORK = {
@@ -66,7 +67,7 @@ ROOT_URLCONF = 'newsportal.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'user' / 'templates'],
+        'DIRS': [BASE_DIR / 'user' / 'templates', BASE_DIR / 'newsfeed' / 'templates', BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -135,3 +136,9 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+CELERY_BROKER_URL = "redis://redis:6379"
+CELERY_RESULT_BACKEND = "redis://redis:6379"
+
+LOGIN_REDIRECT_URL = '/user/login'
+LOGIN_URL = LOGIN_REDIRECT_URL

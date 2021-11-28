@@ -1,13 +1,34 @@
 version: "3.9"
 
 services:
-  web:
+  djangoapp:
     build: .
+    container_name: djangoapp
     env_file:
       - .env
     environment:
       - DEBUG=True
     volumes:
       - ./:/code
+    command: >
+      bash -c "python manage.py runserver 0.0.0.0:8000"
     ports:
       - "8000:8000"
+      
+  redis:
+    image: redis:alpine
+    container_name: redis
+
+  celery:
+    restart: always
+    build:
+      context: .
+    env_file:
+      - .env
+    command: celery -A newsportal worker -B -l INFO
+    volumes:
+      - ./:/code
+    container_name: celery
+    depends_on:
+      - redis
+      - djangoapp
