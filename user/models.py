@@ -12,7 +12,7 @@ def one_of_these_countries(value):
 class UserSettings(models.Model):
     id = models.AutoField(primary_key=True)
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    countries = models.TextField()
+    countries = models.TextField(null=True, blank=True)
     sources = models.ManyToManyField(SourceModel)
-    keywords = models.TextField()
+    keywords = models.TextField(null=True, blank=True)
     newsletter = models.BooleanField(default=True)
