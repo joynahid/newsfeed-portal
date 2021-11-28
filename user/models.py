@@ -15,3 +15,4 @@ class UserSettings(models.Model):
     countries = models.TextField()
     sources = models.ManyToManyField(SourceModel)
     keywords = models.TextField()
+    newsletter = models.BooleanField(default=True)
