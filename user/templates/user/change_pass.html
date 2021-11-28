@@ -1,0 +1,15 @@
+{% include 'head.html' %}
+
+<form method="post">
+  {% csrf_token %}
+  <h4>Change password | {{user.username}}</h4>
+  <input
+    class="form-control"
+    type="password"
+    name="password"
+    value=""
+    placeholder="Password"
+  />
+
+  <button class="btn btn-secondary my-1" type="submit">Reset</button>
+</form>
