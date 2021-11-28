@@ -16,6 +16,7 @@ from apiconsumer.models import SourceModel
 
 from user.forms import LoginForm, RegistrationForm, SettingsForm
 from user.models import UserSettings
+from user.tasks import send_reset_password_mail, token_decode
 
 
 def registration_view(req: HttpRequest):
@@ -33,6 +34,24 @@ def registration_view(req: HttpRequest):
 
     return HttpResponse(reg_template.render({"form": form}, req))
 
+def change_password(req, token):
+    try:
+        decoded = token_decode(token)
+        user = User.objects.get(id=decoded['userId'])
+
+        if req.method == 'POST':
+            password = req.POST.get('password')
+            if password:
+                user.set_password(password)
+                user.save()
+                return HttpResponse("Password changed successfully")
+
+        cp_template = loader.get_template("user/change_pass.html")
+
+        return HttpResponse(cp_template.render({'user':user}, req))
+    except Exception as e:
+        print(e)
+        return HttpResponse("Invalid URL")
 
 def login_view(req: HttpRequest):
     login_template = loader.get_template("user/login.html")
@@ -57,6 +76,15 @@ def login_view(req: HttpRequest):
 
     return HttpResponse(login_template.render({"form": form}, req))
 
+def reset_password(req: HttpRequest):
+    email = req.GET.get('email')
+
+    try:
+        user = User.objects.get(email=email)
+        send_reset_password_mail.delay(user.id, user.email)
+        return HttpResponse(f"An email was sent to {user.email}")
+    except Exception:
+        return HttpResponse(f"User with {email} not found")    
 
 @login_required()
 def logout(req: HttpRequest):

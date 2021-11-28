@@ -20,6 +20,7 @@ pathspec==0.9.0
 platformdirs==2.4.0
 prompt-toolkit==3.0.23
 pycountry==20.7.3
+PyJWT==2.3.0
 python-dotenv==0.19.2
 pytz==2021.3
 redis==4.0.2
