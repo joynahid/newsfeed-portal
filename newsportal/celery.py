@@ -19,6 +19,10 @@ app.conf.beat_schedule = {
         "task": "newsfeed.tasks.populate_newsfeed",
         "schedule": 15*60,
     },
+    "notify-user-every-30-minutes": {
+        "task": "newsfeed.tasks.notify_headlines",
+        "schedule": 30*60,
+    },
 }
 
 app.autodiscover_tasks()
