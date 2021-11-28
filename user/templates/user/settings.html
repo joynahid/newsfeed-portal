@@ -4,6 +4,13 @@
     {% include 'head.html' %}
   </head>
   <body>
+    <nav>
+      <ul>
+        <li><a href="/">Newsfeed</a></li>
+        <li><a href="/user/profile">Profile</a></li>
+        <li><a href="/user/settings">Settings</a></li>
+      </ul>
+    </nav>
       {% if errors %}
       {{errors}}
       {% endif %}

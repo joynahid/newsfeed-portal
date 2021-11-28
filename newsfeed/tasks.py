@@ -70,8 +70,6 @@ def notify_headlines():
                 publishedAt__gte=last_notification_send,
             )
 
-            print(headlines, last_notification_send)
-
             for headline in headlines:
                 NewsNotificationModel.objects.create(
                     user=user,

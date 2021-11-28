@@ -1,4 +1,11 @@
-{% include "head.html" %} {% for each in top_headlines %}
+{% include "head.html" %} 
+<ul>
+  <li><a href="/">Newsfeed</a></li>
+  <li><a href="/user/profile">Profile</a></li>
+  <li><a href="/user/settings">Settings</a></li>
+</ul>
+
+{% for each in top_headlines %}
 <div class="py-4">
   <img src="{{each.thumbnailUrl}}" width="300px" />
   <br />
