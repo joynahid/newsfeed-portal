@@ -41,7 +41,7 @@ def newsfeedindex(req: HttpRequest):
 
     template = loader.get_template("newsfeed/index.html")
 
-    if offset +10 > cnt:
+    if offset +10 >= cnt:
         offset = -1
 
     return HttpResponse(
