@@ -79,6 +79,9 @@ def login_view(req: HttpRequest):
 def reset_password(req: HttpRequest):
     email = req.GET.get('email')
 
+    if not email:
+        return HttpResponse("Email was empty")
+
     try:
         user = User.objects.get(email=email)
         send_reset_password_mail.delay(user.id, user.email)

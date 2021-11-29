@@ -2,12 +2,21 @@ from django import forms
 from django.contrib.auth.models import User
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit
+from django.forms.widgets import PasswordInput
 
 from apiconsumer.const import *
 import pycountry
 
 
 class RegistrationForm(forms.ModelForm):
+    password = forms.CharField(
+        widget=PasswordInput,
+        max_length=100,
+        min_length=8,
+        help_text="Minimum 8 characters",
+    )
+    email = forms.EmailField(help_text="Must be a valid email")
+
     class Meta:
         model = User
         fields = ("username", "email", "password")
@@ -29,6 +38,13 @@ class RegistrationForm(forms.ModelForm):
 
 
 class LoginForm(forms.ModelForm):
+    password = forms.CharField(
+        widget=PasswordInput,
+        max_length=100,
+        min_length=8,
+        help_text="Minimum 8 characters",
+    )
+
     class Meta:
         model = User
         fields = ("username", "password")
