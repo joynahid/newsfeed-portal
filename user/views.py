@@ -35,8 +35,9 @@ def registration_view(req: HttpRequest):
     return HttpResponse(reg_template.render({"form": form}, req))
 
 
-def change_password(req, token):
+def change_password(req):
     try:
+        token = req.GET.get('token')
         decoded = token_decode(token)
         user = User.objects.get(id=decoded["userId"])
 
@@ -79,6 +80,9 @@ def login_view(req: HttpRequest):
     return HttpResponse(login_template.render({"form": form}, req))
 
 def reset_password(req: HttpRequest):
+    """
+    Initiates reset password by sending token to user email
+    """
     email = req.GET.get("email")
 
     if not email:
@@ -86,7 +90,7 @@ def reset_password(req: HttpRequest):
 
     try:
         user = User.objects.get(email=email)
-        send_reset_password_mail.delay(user.id, user.email)
+        send_reset_password_mail.delay(user.id, user.email, 'http://localhost:8000/change_password')
         return HttpResponse(f"An email was sent to {user.email}")
     except Exception:
         return HttpResponse(f"User with {email} not found")

@@ -1,8 +1,6 @@
-from datetime import date
 from django.contrib.auth.models import User
-from django.shortcuts import render
-from django.utils.decorators import method_decorator
 from django.contrib.auth import login, logout
+from newsfeed.tasks import populate_user_newsfeed
 
 from user.models import UserSettings
 from apiconsumer.models import SourceModel
@@ -13,7 +11,6 @@ from rest_framework.response import Response
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.authtoken.models import Token
-from rest_framework.serializers import Serializer
 from rest_framework.exceptions import ValidationError, bad_request
 
 from user.tasks import token_decode
@@ -117,6 +114,9 @@ class UserSettingsAPI(generics.GenericAPIView):
         settings.sources.set(SourceModel.objects.filter(id__in=sources), clear=True)
         settings.save()
 
+        # Invoke async task for updating newsfeed
+        populate_user_newsfeed.delay(request.user.id)
+
         return Response(
             self.get_serializer(instance=settings).data, status=status.HTTP_200_OK
         )
@@ -149,12 +149,19 @@ class InitiateChangePassword(generics.GenericAPIView):
 
     def get(self, request):
         email = request.GET.get("email")
+        callback_url = request.GET.get('callback')
+
+        if not callback_url:
+            raise ValidationError({"callback": "callback parameter is required"})
+
+        if not email:
+            raise ValidationError({"email": "email parameter is required"})
 
         if not User.objects.filter(email=email).exists():
             raise ValidationError({"message": "email is not recognized"})
 
-        send_reset_password_mail.delay(request.user.id, request.user.email)
-        return Response({"message": f"password reset mail was sent to {email}"})
+        send_reset_password_mail.delay(request.user.id, request.user.email, callback_url)
+        return Response({"message": f"password reset mail was sent to {email}."})
 
 
 class Profile(generics.GenericAPIView):

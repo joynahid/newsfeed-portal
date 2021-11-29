@@ -13,12 +13,19 @@ def token_decode(token):
 
 
 @shared_task
-def send_reset_password_mail(user_id, user_email):
+def send_reset_password_mail(user_id, user_email, callback_url):
     token = encode(user_id)
+
+    HTML_MESSAGE = f"""
+        <p>Please click the url to reset your password</p>
+        <h4><a href="{callback_url}/?token={token}">Reset my password</a></h4>.
+        <p>If it\'s inside your spam box please mark it as not spam first, otherwise the link might not be visible</p>
+    """
+
     send_mail(
         "Reset Password | Strativ News Portal",
         "",
-        html_message=f'Please click the url to reset your password <a href="http://localhost:8000/user/change_password/{token}">Reset my password</a>. If it\'s inside your spam box please mark it as not spam first, otherwise the link might not be visible',
+        html_message=HTML_MESSAGE,
         from_email=os.getenv("SEND_FROM_EMAIL"),
         recipient_list=[user_email],
         fail_silently=False,
