@@ -6,7 +6,7 @@
 
 ## Installation
 
-Only tested on Ubuntu 20.04 LTS. Might work in other linux distributions (Docker Magic).
+Only tested on Ubuntu 20.04 LTS and 5.10.0-kali7-amd64. Might work in other linux distributions (Docker Magic).
 
 You will need **docker and docker-compose** installed to spin up this app in seconds. If you do not have these installed please install it from [https://docs.docker.com/engine/install/](https://docs.docker.com/engine/install/)
 
@@ -26,8 +26,7 @@ git clone https://github.com/joynahid/newsfeed-portal.git
 cd newsfeed-portal
 
 # Config your .env file
-
-# For the first time you need to run a script file
+# After that only for the first time you need to run a script file
 # It will populate the required initial database
 chmod +x run.sh
 ./run.sh
