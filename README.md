@@ -5,20 +5,23 @@
   - [Usage](#usage)
 
 ## Installation
-You will need **docker and docker-compose** installed to spin up this app in second. If you do not have these installed please install it from [https://docs.docker.com/engine/install/](https://docs.docker.com/engine/install/)
+
+Only tested on Ubuntu 20.04 LTS. Might work in other linux distributions (Docker Magic).
+
+You will need **docker and docker-compose** installed to spin up this app in seconds. If you do not have these installed please install it from [https://docs.docker.com/engine/install/](https://docs.docker.com/engine/install/)
 
 You need to create two free accounts in Sendgrid and NewsAPI beforehand.
 - Sendgrid ( https://sendgrid.com/ ) - For sending emails
 - NewsAPI ( https://newsapi.org/ ) - For fetching news
 
-You also need to configure it before spinning it up. Fill in the variables in `.env copy` file and save it as exactly `.env` These configs are important!
+Grab those APIs and put it inside your `.env` file. Also fill in the variables in `.env copy` file and save it as exactly `.env` These configs are important!
 
-Now fire up your terminal
+Now fire up your terminal and use `sudo` if necessary.
 
 ```bash
-git clone
+git clone https://github.com/joynahid/newsfeed-portal.git
 
-cd 
+cd newsfeed-portal
 
 # For the first time you need to run a script file
 # It will populate the required initial database
