@@ -3,8 +3,12 @@
   {% include 'head.html' %}
   <body>
     <h1>Hi {{ user.username }}</h1>
+    <h5>{{ user.email }}</h5>
+
+    <br />
 
     <p><a href="/">Newsfeed</a></p>
     <p><a href="/user/settings">Settings</a></p>
+    <p><a href="/user/logout">Logout</a></p>
   </body>
 </html>
