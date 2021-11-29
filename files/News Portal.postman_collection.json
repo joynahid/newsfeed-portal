@@ -1,0 +1,322 @@
+{
+	"info": {
+		"_postman_id": "ebac16f2-0057-43a7-9715-160e200e1b25",
+		"name": "Strativ News Portal",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "User Interaction",
+			"item": [
+				{
+					"name": "Validate Registration",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"password\": \"1\",\n    \"username\": \"k13\",\n    \"email\": \"iam@h.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/user/registration",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"registration"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"password\": \"1\",\n    \"username\": \"k13\",\n    \"email\": \"iam@h.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/user/registration",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"registration"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login User",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token 7a7fc6d602f619dcc63f93a0dd084a5db0d6cda1",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"joy\",\n    \"password\": \"123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/user/login",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Profile",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/user/profile",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"profile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Initiate Change Password",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/user/initiate_change_password?email=nahid@jsmai.com",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"initiate_change_password"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "nahid@jsmai.com"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Change Password",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"password\" : \"1234\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/user/change_password/myjwttokenfromemail",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"change_password",
+								"myjwttokenfromemail"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieve Settings",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/user/settings",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"settings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Settings",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"sources\": [1,2],\n    \"countries\": [\n        \"in\"\n    ],\n    \"keywords\": \"\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/user/settings",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"settings"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "NewsFeed",
+			"item": [
+				{
+					"name": "Query News Feed",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": null
+					},
+					"response": []
+				},
+				{
+					"name": "Query with Pagination",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/api/newsfeed/?limit=20&offset=20",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"newsfeed",
+								""
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "20"
+								},
+								{
+									"key": "offset",
+									"value": "20"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "apikey",
+		"apikey": [
+			{
+				"key": "value",
+				"value": "Token 7a7fc6d602f619dcc63f93a0dd084a5db0d6cda1",
+				"type": "string"
+			},
+			{
+				"key": "key",
+				"value": "Authorization",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:8000"
+		}
+	]
+}
