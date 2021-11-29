@@ -32,6 +32,9 @@ def feed_sources_sync():
 
 @shared_task
 def feed_headlines_based_on_country():
+    """
+    Fetches news and save it to our database to serve users based on countries
+    """
     countries = []
     for c in UserSettings.objects.values_list("countries", flat=True):
         countries.extend(c.split(","))
@@ -145,9 +148,15 @@ def feed_headlines_sync():
 
 @shared_task
 def feed_sources():
+    """
+    Fetches sources from newsapi and saves it in the database
+    """
     feed_sources_sync()
 
 
 @shared_task
 def feed_headlines():
+    """
+    Fetches headlines by sources and saves into database
+    """
     feed_headlines_sync()

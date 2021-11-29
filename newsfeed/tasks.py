@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User
 from user.models import UserSettings
 from apiconsumer.models import SourceModel, TopHeadlineModel
-from django.core.mail import send_mail, send_mass_mail
+from django.core.mail import send_mass_mail
 from .models import NewsFeedModel, NewsNotificationModel
 from celery import shared_task
 from celery.utils import log
@@ -46,7 +46,7 @@ def populate_user_newsfeed(userId):
 @shared_task
 def notify_headlines():
     """
-    Sends email to user based last sent email.
+    Sends email to user based on last sent email.
     It won't send any email before the last news publish time
     """
     all_settings = UserSettings.objects.all()
