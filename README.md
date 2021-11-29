@@ -16,12 +16,16 @@ You need to create two free accounts in Sendgrid and NewsAPI beforehand.
 
 Grab those APIs and put it inside your `.env` file. Also fill in the variables in `.env copy` file and save it as exactly `.env` These configs are important!
 
-Now fire up your terminal and use `sudo` if necessary.
+Now fire up your terminal.
+
+Note: **Use `sudo` if necessary.**
 
 ```bash
 git clone https://github.com/joynahid/newsfeed-portal.git
 
 cd newsfeed-portal
+
+# Config your .env file
 
 # For the first time you need to run a script file
 # It will populate the required initial database
