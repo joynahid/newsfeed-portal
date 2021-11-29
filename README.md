@@ -54,7 +54,7 @@ Trying to do manual installation? Great! You can follow the scripts, `Dockerfile
 
 
 ## Usage
-You can use [this POSTMAN FILE](files/News%20Portal.postman_collection.json) to have a quick look what are the available API endpoints.
+You can use [this POSTMAN FILE](files/News%20Portal.postman_collection.json) to have a quick look what are the available API endpoints. Remeber to add a postman variable `base_url` in the environment. You can login and acquire the token and set to the collection/global header for accessing portected endpoints.
 
 There is a very simple web user interface that you can access by visiting [http://localhost:8000](http://localhost:8000) (Keep you docker container running)
 - Create an account

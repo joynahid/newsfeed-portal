@@ -123,7 +123,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/api/user/initiate_change_password?email=nahid@jsmai.com",
+							"raw": "{{base_url}}/api/user/initiate_change_password?email=nahidhasan282@gmail.com&callback=http://localhost:9999/reset",
 							"host": [
 								"{{base_url}}"
 							],
@@ -135,7 +135,11 @@
 							"query": [
 								{
 									"key": "email",
-									"value": "nahid@jsmai.com"
+									"value": "nahidhasan282@gmail.com"
+								},
+								{
+									"key": "callback",
+									"value": "http://localhost:9999/reset"
 								}
 							]
 						}
