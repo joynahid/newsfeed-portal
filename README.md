@@ -28,9 +28,9 @@ cd newsfeed-portal
 chmod +x run.sh
 ./run.sh
 
-# You're done installing the up
+# You're done installing the app
 
-# Next you can spin it up
+# From now on you can spin it up
 docker-compose up
 
 # You can kill it by
