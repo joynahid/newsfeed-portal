@@ -56,6 +56,8 @@ class RegisterUser(generics.GenericAPIView):
 
 class LoginUser(generics.GenericAPIView):
     serializer_class = LoginSerializer
+
+    authentication_classes = [TokenAuthentication]
     permission_classes = [AllowAny]
 
     def post(self, request):

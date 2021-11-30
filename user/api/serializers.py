@@ -51,6 +51,7 @@ class RegisterSerializer(serializers.ModelSerializer):
 
         username = data.get("username")
         password = data.get("password")
+        email = data.get("email")
 
         if len(username) < 3:
             raise serializers.ValidationError(
@@ -66,9 +67,14 @@ class RegisterSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError({"email": "email is required"})
 
         try:
-            validate_email(data.get("email"))
+            validate_email(email)
         except DjangoValidationError as e:
             raise serializers.ValidationError({"email": "invalid email address"})
+
+        email_exists = User.objects.filter(email=email)
+
+        if email_exists:
+            raise serializers.ValidationError({"email": "email already exists"})
 
         return data
 
@@ -113,4 +119,5 @@ class UserSettingsModelSerializer(serializers.ModelSerializer):
         fields = ("sources", "countries", "keywords")
 
     def get_countries(self, instance):
-        return instance.countries.split(',')
+        if instance.countries:
+            return instance.countries.split(',')

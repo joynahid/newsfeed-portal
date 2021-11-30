@@ -1,7 +1,8 @@
 {
 	"info": {
-		"_postman_id": "ebac16f2-0057-43a7-9715-160e200e1b25",
+		"_postman_id": "23cb07ad-0d32-43d8-a4a8-e2cd85aae219",
 		"name": "Strativ News Portal",
+		"description": "Welcome to API Documentation of Strativ Newsfeed.",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -34,7 +35,214 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Validate Registration 200",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"password\": \"12345678\",\n    \"username\": \"nahid\",\n    \"email\": \"nahid@email.com\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/user/registration",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"user",
+										"registration"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Tue, 30 Nov 2021 08:33:42 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.8.12"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept"
+								},
+								{
+									"key": "Allow",
+									"value": "POST, PATCH, OPTIONS"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Length",
+									"value": "0"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "same-origin"
+								}
+							],
+							"cookie": [],
+							"body": null
+						},
+						{
+							"name": "Validate Registration 400",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"password\": \"12345678\",\n    \"username\": \"name\",\n    \"email\": \"nahid@email.com\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/user/registration",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"user",
+										"registration"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Tue, 30 Nov 2021 08:34:05 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.8.12"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept"
+								},
+								{
+									"key": "Allow",
+									"value": "POST, PATCH, OPTIONS"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Length",
+									"value": "58"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "same-origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"username\": [\n        \"A user with that username already exists.\"\n    ]\n}"
+						},
+						{
+							"name": "Validate Registration 400",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"password\": \"12345678\",\n    \"username\": \"noname\",\n    \"email\": \"nahid@email.com\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/user/registration",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"user",
+										"registration"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Tue, 30 Nov 2021 08:35:46 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.8.12"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept"
+								},
+								{
+									"key": "Allow",
+									"value": "POST, PATCH, OPTIONS"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Length",
+									"value": "34"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "same-origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"email\": [\n        \"email already exists\"\n    ]\n}"
+						}
+					]
 				},
 				{
 					"name": "Register User",
@@ -62,7 +270,148 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Register User 200",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"password\": \"12345678\",\n    \"username\": \"nahid\",\n    \"email\": \"nahid@email.com\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/user/registration",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"user",
+										"registration"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Tue, 30 Nov 2021 08:35:28 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.8.12"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept"
+								},
+								{
+									"key": "Allow",
+									"value": "POST, PATCH, OPTIONS"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Length",
+									"value": "62"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "same-origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"user\": {\n        \"id\": 8,\n        \"username\": \"nahid\",\n        \"email\": \"nahid@email.com\"\n    }\n}"
+						},
+						{
+							"name": "Register User 400",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"password\": \"12345678\",\n    \"username\": \"nahid\",\n    \"email\": \"nahid@email.com\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/user/registration",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"user",
+										"registration"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Tue, 30 Nov 2021 08:36:05 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.8.12"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept"
+								},
+								{
+									"key": "Allow",
+									"value": "POST, PATCH, OPTIONS"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Length",
+									"value": "58"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "same-origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"username\": [\n        \"A user with that username already exists.\"\n    ]\n}"
+						}
+					]
 				},
 				{
 					"name": "Login User",
@@ -96,7 +445,168 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Login User 200",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Token 7a7fc6d602f619dcc63f93a0dd084a5db0d6cda1",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"username\": \"nahid\",\n    \"password\": \"12345678\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/user/login",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"user",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Tue, 30 Nov 2021 08:36:36 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.8.12"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept, Cookie"
+								},
+								{
+									"key": "Allow",
+									"value": "POST, DELETE, OPTIONS"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Length",
+									"value": "52"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "csrftoken=lGuf7QL6HNLVo0ZdDLiWD5WKH2kFUUO4g50B05viWLzxR9tTYRRlWqxOcNgYJGmt; expires=Tue, 29 Nov 2022 08:36:36 GMT; Max-Age=31449600; Path=/; SameSite=Lax"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "sessionid=atye1rk2iminufu30jpj1vjo567iw41e; expires=Tue, 14 Dec 2021 08:36:36 GMT; HttpOnly; Max-Age=1209600; Path=/; SameSite=Lax"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"token\": \"e1929cfb8c93f69a40b3de0678b88cbd22a7b90c\"\n}"
+						},
+						{
+							"name": "Login User 400",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Token 7a7fc6d602f619dcc63f93a0dd084a5db0d6cda1",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"username\": \"nahid\",\n    \"password\": \"1234568\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/user/login",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"user",
+										"login"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Tue, 30 Nov 2021 08:37:51 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.8.12"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept"
+								},
+								{
+									"key": "Allow",
+									"value": "POST, DELETE, OPTIONS"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Length",
+									"value": "46"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "same-origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": [\n        \"incorrect username or password\"\n    ]\n}"
+						}
+					]
 				},
 				{
 					"name": "Profile",
@@ -115,7 +625,134 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Profile 401",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/api/user/profile",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"user",
+										"profile"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Tue, 30 Nov 2021 08:39:10 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.8.12"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "WWW-Authenticate",
+									"value": "Token"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept"
+								},
+								{
+									"key": "Allow",
+									"value": "GET, HEAD, OPTIONS"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Length",
+									"value": "58"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "same-origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"detail\": \"Authentication credentials were not provided.\"\n}"
+						},
+						{
+							"name": "Profile 200",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/api/user/profile",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"user",
+										"profile"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Tue, 30 Nov 2021 08:40:34 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.8.12"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept"
+								},
+								{
+									"key": "Allow",
+									"value": "GET, HEAD, OPTIONS"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Length",
+									"value": "46"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "same-origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"username\": \"nahid\",\n    \"email\": \"nahid@email.com\"\n}"
+						}
+					]
 				},
 				{
 					"name": "Initiate Change Password",
@@ -144,7 +781,213 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Initiate Change Password 200",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/api/user/initiate_change_password?email=nahidhasan282@gmail.com&callback=http://localhost:9999/reset",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"user",
+										"initiate_change_password"
+									],
+									"query": [
+										{
+											"key": "email",
+											"value": "nahidhasan282@gmail.com"
+										},
+										{
+											"key": "callback",
+											"value": "http://localhost:9999/reset"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Tue, 30 Nov 2021 08:41:06 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.8.12"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept"
+								},
+								{
+									"key": "Allow",
+									"value": "GET, HEAD, OPTIONS"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Length",
+									"value": "70"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "same-origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"password reset mail was sent to nahidhasan282@gmail.com.\"\n}"
+						},
+						{
+							"name": "Initiate Change Password 400",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/api/user/initiate_change_password?callback=http://localhost:9999/reset",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"user",
+										"initiate_change_password"
+									],
+									"query": [
+										{
+											"key": "callback",
+											"value": "http://localhost:9999/reset"
+										}
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Tue, 30 Nov 2021 08:41:26 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.8.12"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept"
+								},
+								{
+									"key": "Allow",
+									"value": "GET, HEAD, OPTIONS"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Length",
+									"value": "39"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "same-origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"email\": \"email parameter is required\"\n}"
+						},
+						{
+							"name": "Initiate Change Password 400",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/api/user/initiate_change_password?email=nahidhasan282@gmail.com",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"user",
+										"initiate_change_password"
+									],
+									"query": [
+										{
+											"key": "email",
+											"value": "nahidhasan282@gmail.com"
+										}
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Tue, 30 Nov 2021 08:41:53 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.8.12"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept"
+								},
+								{
+									"key": "Allow",
+									"value": "GET, HEAD, OPTIONS"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Length",
+									"value": "45"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "same-origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"callback\": \"callback parameter is required\"\n}"
+						}
+					]
 				},
 				{
 					"name": "Change Password",
@@ -173,7 +1016,79 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Change Password 400",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"password\" : \"1234\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/user/change_password/myjwttokenfromemail",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"user",
+										"change_password",
+										"myjwttokenfromemail"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Tue, 30 Nov 2021 08:42:28 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.8.12"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept"
+								},
+								{
+									"key": "Allow",
+									"value": "POST, OPTIONS"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Length",
+									"value": "30"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "same-origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error\": \"Bad Request (400)\"\n}"
+						}
+					]
 				},
 				{
 					"name": "Retrieve Settings",
@@ -204,7 +1119,78 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Retrieve Settings 200",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/user/settings",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"user",
+										"settings"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Tue, 30 Nov 2021 08:44:19 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.8.12"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept"
+								},
+								{
+									"key": "Allow",
+									"value": "GET, POST, HEAD, OPTIONS"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Length",
+									"value": "47"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "same-origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"sources\": [],\n    \"countries\": null,\n    \"keywords\": null\n}"
+						}
+					]
 				},
 				{
 					"name": "Update Settings",
@@ -232,7 +1218,78 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Update Settings 200",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"sources\": [1,2],\n    \"countries\": [\n        \"in\"\n    ],\n    \"keywords\": \"india, bangladesh\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/user/settings",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"user",
+										"settings"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Tue, 30 Nov 2021 08:44:49 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.8.12"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept"
+								},
+								{
+									"key": "Allow",
+									"value": "GET, POST, HEAD, OPTIONS"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Length",
+									"value": "566"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "same-origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"sources\": [\n        {\n            \"id\": 1,\n            \"sourceId\": \"abc-news\",\n            \"name\": \"ABC News\",\n            \"description\": \"Your trusted source for breaking news, analysis, exclusive interviews, headlines, and videos at ABCNews.com.\",\n            \"url\": \"https://abcnews.go.com\",\n            \"country\": \"us\"\n        },\n        {\n            \"id\": 2,\n            \"sourceId\": \"abc-news-au\",\n            \"name\": \"ABC News (AU)\",\n            \"description\": \"Australia's most trusted source of local, national and world news. Comprehensive, independent, in-depth analysis, the latest business, sport, weather and more.\",\n            \"url\": \"http://www.abc.net.au/news\",\n            \"country\": \"au\"\n        }\n    ],\n    \"countries\": [\n        \"in\"\n    ],\n    \"keywords\": \"india, bangladesh\"\n}"
+						}
+					]
 				}
 			]
 		},
@@ -244,40 +1301,147 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": null
-					},
-					"response": []
-				},
-				{
-					"name": "Query with Pagination",
-					"request": {
-						"method": "GET",
-						"header": [],
 						"url": {
-							"raw": "http://localhost:8000/api/newsfeed/?limit=20&offset=20",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8000",
-							"path": [
-								"api",
-								"newsfeed",
-								""
-							],
-							"query": [
-								{
-									"key": "limit",
-									"value": "20"
-								},
-								{
-									"key": "offset",
-									"value": "20"
-								}
-							]
+							"raw": ""
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Query News Feed 200",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/api/newsfeed",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"newsfeed"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Tue, 30 Nov 2021 08:45:31 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.8.12"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept, Cookie"
+								},
+								{
+									"key": "Allow",
+									"value": "GET, HEAD, OPTIONS"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Length",
+									"value": "10990"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "same-origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"count\": 65,\n    \"next\": \"http://localhost:8000/api/newsfeed/?limit=20&offset=20\",\n    \"previous\": null,\n    \"results\": [\n        {\n            \"id\": 898,\n            \"author\": \"Samantha Lewis\",\n            \"title\": \"Matildas seek redemption against world champions USA in second friendly in Newcastle, live blog and updates\",\n            \"description\": \"Fresh off a 3-0 victory over the Matildas on Saturday, the USA will be hoping to make it two from two when they take on the hosts in tonight's final friendly. Follow our live blog.\",\n            \"url\": \"http://www.abc.net.au/news/2021-11-30/australia-matildas-usa-friendly-newcastle-live-blog-updates/100658892\",\n            \"thumbnailUrl\": \"https://live-production.wcms.abc-cdn.net.au/0e9154d9c225cafd5abc5148f45ac65f?impolicy=wcms_crop_resize&cropH=1065&cropW=1893&xPos=0&yPos=44&width=862&height=485\",\n            \"country\": \"\",\n            \"publishedAt\": \"2021-11-30T07:42:53Z\",\n            \"source\": 2\n        },\n        {\n            \"id\": 901,\n            \"author\": \"Stephanie Dalzell\",\n            \"title\": \"Julia Gillard backs Jenkins review's call for politician code of conduct, triggered by Brittany Higgins revelations\",\n            \"description\": \"Australia's first female prime minister Julia Gillard has thrown her support behind the sex discrimination commissioner's recommendation for a code of conduct for politicians, as she responds to the review triggered by Brittany Higgins's revelations on the cu…\",\n            \"url\": \"http://www.abc.net.au/news/2021-11-30/cph-gillard-responds-to-jenkins-parliamentary-workplace-review/100662220\",\n            \"thumbnailUrl\": \"https://live-production.wcms.abc-cdn.net.au/41731cdb7f3d8c0087a1d04fd0266182?impolicy=wcms_crop_resize&cropH=2163&cropW=3845&xPos=411&yPos=133&width=862&height=485\",\n            \"country\": \"\",\n            \"publishedAt\": \"2021-11-30T07:28:29Z\",\n            \"source\": 2\n        },\n        {\n            \"id\": 903,\n            \"author\": \"Kelsie Iorio\",\n            \"title\": \"The Loop: Human remains found in Victorian bushland, border uncertainty remains as another Omicron case confirmed, and meet Luna the therapy dog\",\n            \"description\": \"Here's your TL;DR for today's news.\",\n            \"url\": \"http://www.abc.net.au/news/2021-11-30/latest-news/100662948\",\n            \"thumbnailUrl\": \"https://live-production.wcms.abc-cdn.net.au/64a095ddc07b95d7e19a7526dc21d8eb?impolicy=wcms_crop_resize&cropH=450&cropW=800&xPos=0&yPos=75&width=862&height=485\",\n            \"country\": \"\",\n            \"publishedAt\": \"2021-11-30T07:09:21Z\",\n            \"source\": 2\n        },\n        {\n            \"id\": 904,\n            \"author\": \"ABC News\",\n            \"title\": \"Zero new cases in SA as authorities focus on boosting northern suburb vaccination uptake\",\n            \"description\": \"There have been no new cases of COVID-19 reported in SA today. SA Health has opened a drive-through vaccination clinic in Adelaide's north.\",\n            \"url\": \"http://www.abc.net.au/news/2021-11-30/zero-new-covid-cases-in-sa/100662712\",\n            \"thumbnailUrl\": \"https://live-production.wcms.abc-cdn.net.au/3f269e49ddf26491b87de581946b5577?impolicy=wcms_crop_resize&cropH=2268&cropW=4032&xPos=0&yPos=159&width=862&height=485\",\n            \"country\": \"\",\n            \"publishedAt\": \"2021-11-30T07:01:42Z\",\n            \"source\": 2\n        },\n        {\n            \"id\": 905,\n            \"author\": \"ABC News\",\n            \"title\": \"NRL refuses to register Anthony Milford's South Sydney Rabbitohs contact\",\n            \"description\": \"The NRL says it will not consider registering Milford's contract with South Sydney until the completion of criminal proceedings against the 27-year-old.\",\n            \"url\": \"http://www.abc.net.au/news/2021-11-30/nrl-refuses-to-register-anthony-milford-south-sydney-contract/100663124\",\n            \"thumbnailUrl\": \"https://live-production.wcms.abc-cdn.net.au/806f7626c778075ee916ceb015007503?impolicy=wcms_crop_resize&cropH=776&cropW=1379&xPos=0&yPos=58&width=862&height=485\",\n            \"country\": \"\",\n            \"publishedAt\": \"2021-11-30T06:47:10Z\",\n            \"source\": 2\n        },\n        {\n            \"id\": 906,\n            \"author\": \"ABC News\",\n            \"title\": \"What is the Elf on the Shelf and where did the Christmas tradition come from?\",\n            \"description\": \"Have you heard of the Elf on the Shelf Christmas tradition? This modern trend, adored by families worldwide, keeps children on their best behaviour before Santa arrives.\",\n            \"url\": \"http://www.abc.net.au/news/2021-11-30/what-is-the-elf-on-the-shelf-and-where-did-it-come-from/100645992\",\n            \"thumbnailUrl\": \"https://live-production.wcms.abc-cdn.net.au/8cbfb599ac7995b14403479be931530c?impolicy=wcms_crop_resize&cropH=2393&cropW=4254&xPos=412&yPos=312&width=862&height=485\",\n            \"country\": \"\",\n            \"publishedAt\": \"2021-11-30T06:42:21Z\",\n            \"source\": 2\n        },\n        {\n            \"id\": 909,\n            \"author\": \"DÁNICA COTO Associated Press\",\n            \"title\": \"Barbados says goodbye to queen, transforms into republic\",\n            \"description\": \"\",\n            \"url\": \"https://abcnews.go.com/International/wireStory/barbados-goodbye-queen-transforms-republic-81460578\",\n            \"thumbnailUrl\": \"https://s.abcnews.com/images/US/211129_vod_onlocation_hpMain_16x9_992.jpg\",\n            \"country\": \"\",\n            \"publishedAt\": \"2021-11-30T05:29:11Z\",\n            \"source\": 1\n        },\n        {\n            \"id\": 910,\n            \"author\": \"NOMAAN MERCHANT Associated Press\",\n            \"title\": \"Appeals court to weigh Trump arguments to withhold records\",\n            \"description\": \"\",\n            \"url\": \"https://abcnews.go.com/Politics/wireStory/appeals-court-weigh-trump-arguments-withhold-records-81460613\",\n            \"thumbnailUrl\": \"https://s.abcnews.com/images/Politics/WireAP_c3d3a2a505b44ea78835cf19dca93225_16x9_992.jpg\",\n            \"country\": \"\",\n            \"publishedAt\": \"2021-11-30T05:23:10Z\",\n            \"source\": 1\n        },\n        {\n            \"id\": 911,\n            \"author\": \"STEFANIE DAZIO Associated Press\",\n            \"title\": \"California father arrested after 4 kids, grandmother killed\",\n            \"description\": \"\",\n            \"url\": \"https://abcnews.go.com/US/wireStory/california-father-arrested-kids-grandmother-killed-81460780\",\n            \"thumbnailUrl\": \"https://s.abcnews.com/images/US/WireAP_7bcfd61dfb4d47649fb1227d2f6a2f06_16x9_992.jpg\",\n            \"country\": \"\",\n            \"publishedAt\": \"2021-11-30T05:13:40Z\",\n            \"source\": 1\n        },\n        {\n            \"id\": 912,\n            \"author\": \"Elizabeth Byrne\",\n            \"title\": \"Defence allowed to vet evidence presented to coronial inquiry into bushfire accidentally sparked by army helicopter\",\n            \"description\": \"An ACT coroner has allowed a suppression order on the brief of evidence presented to a bushfire inquiry, so the Department of Defence can determine if there are any security issues.\",\n            \"url\": \"http://www.abc.net.au/news/2021-11-30/defence-allowed-to-vet-evidence-in-orroral-valley-fire-coronial/100661806\",\n            \"thumbnailUrl\": \"https://live-production.wcms.abc-cdn.net.au/c88edec561fc0e2e01ed9cab33ce000a?impolicy=wcms_crop_resize&cropH=520&cropW=928&xPos=96&yPos=114&width=862&height=485\",\n            \"country\": \"\",\n            \"publishedAt\": \"2021-11-30T05:09:54Z\",\n            \"source\": 2\n        },\n        {\n            \"id\": 914,\n            \"author\": \"The Associated Press\",\n            \"title\": \"China to donate 600 million COVID-19 vaccine doses to Africa\",\n            \"description\": \"\",\n            \"url\": \"https://abcnews.go.com/Health/wireStory/china-donate-600-million-covid-19-vaccine-doses-81458247\",\n            \"thumbnailUrl\": \"https://s.abcnews.com/images/Health/WireAP_2843469a7a5f41029ffc0a80c4722b47_16x9_992.jpg\",\n            \"country\": \"\",\n            \"publishedAt\": \"2021-11-30T02:59:37Z\",\n            \"source\": 1\n        },\n        {\n            \"id\": 920,\n            \"author\": \"Conor Finnegan\",\n            \"title\": \"Iran returns to negotiations, with a nuclear crisis still looming large for Biden\",\n            \"description\": \"\",\n            \"url\": \"https://abcnews.go.com/Politics/iran-returns-negotiations-nuclear-crisis-looming-large-biden/story?id=81448117\",\n            \"thumbnailUrl\": \"https://s.abcnews.com/images/Politics/iran-nuclear-talks-01-sh-jc-211129_1638207302795_hpMain_16x9_992.jpg\",\n            \"country\": \"\",\n            \"publishedAt\": \"2021-11-30T00:13:24Z\",\n            \"source\": 1\n        },\n        {\n            \"id\": 931,\n            \"author\": \"MARYCLAIRE DALE Associated Press\",\n            \"title\": \"Bill Cosby prosecutors ask US Supreme Court to review case\",\n            \"description\": \"\",\n            \"url\": \"https://abcnews.go.com/Entertainment/wireStory/bill-cosby-prosecutors-case-us-high-court-81453218\",\n            \"thumbnailUrl\": \"https://s.abcnews.com/images/Entertainment/WireAP_b244c06fa800498c8fd116443e7cf23d_16x9_992.jpg\",\n            \"country\": \"\",\n            \"publishedAt\": \"2021-11-29T21:09:28Z\",\n            \"source\": 1\n        },\n        {\n            \"id\": 935,\n            \"author\": \"Daniel Mercer, Tom Edwards\",\n            \"title\": \"US, allies 'biggest beneficiaries' of Australia's $17b China trade row, report finds\",\n            \"description\": \"Australia's closest security allies, led by the United States, have been the biggest beneficiaries of Beijing's campaign of economic coercion against Canberra, according to a new report.\",\n            \"url\": \"http://www.abc.net.au/news/rural/2021-11-30/us-allies-benefit-from-china-trade-row-with-australia/100659480\",\n            \"thumbnailUrl\": \"https://live-production.wcms.abc-cdn.net.au/aef8d78b47f9f21bcf2904909584dd92?impolicy=wcms_crop_resize&cropH=1018&cropW=1809&xPos=2&yPos=315&width=862&height=485\",\n            \"country\": \"\",\n            \"publishedAt\": \"2021-11-29T19:45:31Z\",\n            \"source\": 2\n        },\n        {\n            \"id\": 936,\n            \"author\": \"DAVID A. LIEB Associated Press\",\n            \"title\": \"Biden vaccine rule for health workers blocked in 10 states\",\n            \"description\": \"\",\n            \"url\": \"https://abcnews.go.com/Health/wireStory/biden-vaccine-rule-health-workers-blocked-10-states-81450682\",\n            \"thumbnailUrl\": \"https://s.abcnews.com/images/GMA/211129_gma_vega1_hpMain_16x9_992.jpg\",\n            \"country\": \"\",\n            \"publishedAt\": \"2021-11-29T19:04:47Z\",\n            \"source\": 1\n        },\n        {\n            \"id\": 938,\n            \"author\": \"JACQUES BILLEAUD Associated Press\",\n            \"title\": \"Actor charged in riot almost talked way into staying in jail\",\n            \"description\": \"\",\n            \"url\": \"https://abcnews.go.com/Politics/wireStory/actor-charged-riot-talked-staying-jail-81450284\",\n            \"thumbnailUrl\": \"https://s.abcnews.com/images/Politics/WireAP_b3be559de0a24546be4b88642207e583_16x9_992.jpg\",\n            \"country\": \"\",\n            \"publishedAt\": \"2021-11-29T18:26:23Z\",\n            \"source\": 1\n        },\n        {\n            \"id\": 941,\n            \"author\": \"Luke Barr\",\n            \"title\": \"Trump's former Defense Secretary Mark Esper sues Defense Department over book redactions\",\n            \"description\": \"\",\n            \"url\": \"https://abcnews.go.com/Politics/trumps-defense-secretary-mark-esper-sues-defense-department/story?id=81445699\",\n            \"thumbnailUrl\": \"https://s.abcnews.com/images/US/esper-gty-rc-211129_1638199868761_hpMain_16x9_992.jpg\",\n            \"country\": \"\",\n            \"publishedAt\": \"2021-11-29T16:44:00Z\",\n            \"source\": 1\n        },\n        {\n            \"id\": 943,\n            \"author\": \"Catherine Thorbecke\",\n            \"title\": \"Twitter co-founder and CEO Jack Dorsey resigning\",\n            \"description\": \"\",\n            \"url\": \"https://abcnews.go.com/Business/founder-ceo-jack-dorsey-resigning-twitter/story?id=81446216\",\n            \"thumbnailUrl\": \"https://s.abcnews.com/images/Business/dorsey-file-gty-ml-211129_1638197926189_hpMain_16x9_992.jpg\",\n            \"country\": \"\",\n            \"publishedAt\": \"2021-11-29T16:22:00Z\",\n            \"source\": 1\n        },\n        {\n            \"id\": 946,\n            \"author\": \"James Elton\",\n            \"title\": \"Anthony Albanese says COVID-19 variant Omicron reinforces case for purpose-built quarantine over hotels\",\n            \"description\": \"The arrival of the new COVID-19 \\\"variant of concern\\\" has revived the political debate over quarantine ahead of a national cabinet meeting on Tuesday.\",\n            \"url\": \"http://www.abc.net.au/news/2021-11-29/albanese-says-omicron-reinforces-for-purpose-built-quarantine/100660026\",\n            \"thumbnailUrl\": \"https://live-production.wcms.abc-cdn.net.au/a8f98bf5676024f57a107a189d7ed074?impolicy=wcms_crop_resize&cropH=1474&cropW=2631&xPos=180&yPos=180&width=862&height=485\",\n            \"country\": \"\",\n            \"publishedAt\": \"2021-11-29T08:36:18Z\",\n            \"source\": 2\n        },\n        {\n            \"id\": 947,\n            \"author\": \"Antonia O'Flaherty\",\n            \"title\": \"No proof yet Omicron COVID strain worse than other variants, leading disease expert says\",\n            \"description\": \"Worried about the new strain of COVID-19? Omicron has been grabbing plenty of headlines, but a leading infectious disease expert says there's no need to panic just yet.\",\n            \"url\": \"http://www.abc.net.au/news/2021-11-29/covid-omicron-strain-not-cause-for-panic-disease-expert-says/100659350\",\n            \"thumbnailUrl\": \"https://live-production.wcms.abc-cdn.net.au/ec41ae9510d3add32cf24cc4399da0a6?impolicy=wcms_crop_resize&cropH=2813&cropW=5000&xPos=0&yPos=317&width=862&height=485\",\n            \"country\": \"\",\n            \"publishedAt\": \"2021-11-29T07:08:43Z\",\n            \"source\": 2\n        }\n    ]\n}"
+						},
+						{
+							"name": "Query News Feed Pagination 200",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/api/newsfeed/?limit=20&offset=20",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"newsfeed",
+										""
+									],
+									"query": [
+										{
+											"key": "limit",
+											"value": "20"
+										},
+										{
+											"key": "offset",
+											"value": "20"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Tue, 30 Nov 2021 08:46:35 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.8.12"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept, Cookie"
+								},
+								{
+									"key": "Allow",
+									"value": "GET, HEAD, OPTIONS"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Length",
+									"value": "13280"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "same-origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"count\": 65,\n    \"next\": \"http://localhost:8000/api/newsfeed/?limit=20&offset=40\",\n    \"previous\": \"http://localhost:8000/api/newsfeed/?limit=20\",\n    \"results\": [\n        {\n            \"id\": 862,\n            \"author\": \"Niki Burnside\",\n            \"title\": \"Public servants have been told to return to the office, but what risk do they face as COVID-19 remains in the community?\",\n            \"description\": \"Federal public servants have been told to return to the office in the wake of eased COVID-19 restrictions, sparking debate over whether it is the safest approach as the virus continues to circulate in the community.\",\n            \"url\": \"http://www.abc.net.au/news/2021-11-29/public-servants-told-to-return-to-office-but-what-covid-risk/100654088\",\n            \"thumbnailUrl\": \"https://live-production.wcms.abc-cdn.net.au/1dcd1edb593bdab82f836fd4bd59d793?impolicy=wcms_crop_resize&cropH=2813&cropW=5000&xPos=0&yPos=260&width=862&height=485\",\n            \"country\": \"\",\n            \"publishedAt\": \"2021-11-28T19:40:18Z\",\n            \"source\": 2\n        },\n        {\n            \"id\": 863,\n            \"author\": \"Simon Smale\",\n            \"title\": \"George Kambosos Jr's lightweight world title victory over Teófimo López one of Australia’s greatest overseas triumphs\",\n            \"description\": \"George Kambosos Jr’s stunning win over Teófimo López could lay claim to being the best ever by an Australian overseas, making Kambosos Australian boxing’s current number one, writes Simon Smale.\",\n            \"url\": \"http://www.abc.net.au/news/2021-11-29/george-kambosos-jr-lightweight-world-title-victory-best-overseas/100657412\",\n            \"thumbnailUrl\": \"https://live-production.wcms.abc-cdn.net.au/ca9eec2ee2f3b1a462435c82142df396?impolicy=wcms_crop_resize&cropH=2642&cropW=4696&xPos=0&yPos=207&width=862&height=485\",\n            \"country\": \"\",\n            \"publishedAt\": \"2021-11-28T19:38:48Z\",\n            \"source\": 2\n        },\n        {\n            \"id\": 864,\n            \"author\": \"ABC News\",\n            \"title\": \"Omicron is now in Australia. What does that mean for Queensland?\",\n            \"description\": \"Queensland Health says officials are closely monitoring developments in NSW after the detection of two cases of the new COVID-19 variant in hotel quarantine.\",\n            \"url\": \"http://www.abc.net.au/news/2021-11-29/qld-coronavirus-covid/100645890\",\n            \"thumbnailUrl\": \"https://live-production.wcms.abc-cdn.net.au/79ca305208e20601a74535891403f8fa?impolicy=wcms_crop_resize&cropH=2349&cropW=4176&xPos=0&yPos=218&width=862&height=485\",\n            \"country\": \"\",\n            \"publishedAt\": \"2021-11-28T19:36:22Z\",\n            \"source\": 2\n        },\n        {\n            \"id\": 847,\n            \"author\": \"Riordan Davis\",\n            \"title\": \"Lost Eurasian hobby flies into history books as first of his kind in eastern Australia\",\n            \"description\": \"Hubert is the first of his species ever seen in eastern Australia, and birders are wondering whether he's a climate change vagrant from Europe or he just got lost in La Niña.\",\n            \"url\": \"http://www.abc.net.au/news/2021-11-29/rare-bird-sighting-of-eurasian-hobby-sparks-theories/100651210\",\n            \"thumbnailUrl\": \"https://live-production.wcms.abc-cdn.net.au/4bede7d5ab4a07c314afbdcf4ee9755a?impolicy=wcms_crop_resize&cropH=920&cropW=1635&xPos=0&yPos=320&width=862&height=485\",\n            \"country\": \"\",\n            \"publishedAt\": \"2021-11-28T19:26:28Z\",\n            \"source\": 2\n        },\n        {\n            \"id\": 848,\n            \"author\": \"ABC News\",\n            \"title\": \"Louis Vuitton's star designer Virgil Abloh dies of cancer\",\n            \"description\": \"Louis Vuitton star designer Virgil Abloh has died of cancer, his family and employer LVMH say.\",\n            \"url\": \"http://www.abc.net.au/news/2021-11-29/louis-vuitton-designer-virgil-abloh-died-on-sunday-of-cancer/100657532\",\n            \"thumbnailUrl\": \"https://live-production.wcms.abc-cdn.net.au/55aad35c47d530d04771a7dbd8222478?impolicy=wcms_crop_resize&cropH=1942&cropW=3453&xPos=0&yPos=100&width=862&height=485\",\n            \"country\": \"\",\n            \"publishedAt\": \"2021-11-28T19:23:16Z\",\n            \"source\": 2\n        },\n        {\n            \"id\": 811,\n            \"author\": \"ABC News\",\n            \"title\": \"Australians living with disabilities find joy, independence and connection despite the pandemic\",\n            \"description\": \"From the blind photographer observing details, to living solo for the first time, or discovering the power of roller skating — the pandemic for these Australians living with disabilities has been a chance to find joy, independence and new passions.\",\n            \"url\": \"http://www.abc.net.au/news/2021-11-29/pandemic-positives-for-those-living-with-disabilities/100631294\",\n            \"thumbnailUrl\": \"https://live-production.wcms.abc-cdn.net.au/ce899aa94df104f63e1472dbb1a1043d?impolicy=wcms_crop_resize&cropH=675&cropW=1200&xPos=0&yPos=113&width=862&height=485\",\n            \"country\": \"\",\n            \"publishedAt\": \"2021-11-28T19:09:54Z\",\n            \"source\": 2\n        },\n        {\n            \"id\": 812,\n            \"author\": \"Nas Campanella\",\n            \"title\": \"How Nas Campanella's TV debut helped her think about motherhood\",\n            \"description\": \"Years ago Nas Campanella played a pregnant woman on prime time TV. The experience made her feel conflicted — but it also helped her think about motherhood.\",\n            \"url\": \"http://www.abc.net.au/news/2021-11-29/nas-campanella-on-preparing-for-parenting-while-blind/100634702\",\n            \"thumbnailUrl\": \"https://live-production.wcms.abc-cdn.net.au/3d1ac04605c2a9432f26ae130bf4ef6d?impolicy=wcms_crop_resize&cropH=1125&cropW=2000&xPos=0&yPos=104&width=862&height=485\",\n            \"country\": \"\",\n            \"publishedAt\": \"2021-11-28T19:08:02Z\",\n            \"source\": 2\n        },\n        {\n            \"id\": 813,\n            \"author\": \"ABC News\",\n            \"title\": \"China's LGBTIQ+ movement is under attack. But international support can be a double-edged sword\",\n            \"description\": \"Queer communities in China are increasingly seen as a political threat to state stability, writes Jinghua Qian.\",\n            \"url\": \"http://www.abc.net.au/news/2021-11-29/chinas-lgbtqi-movement-homophobia/100649676\",\n            \"thumbnailUrl\": \"https://live-production.wcms.abc-cdn.net.au/16e9af2d7b6c39b44835e63c8b70023b?impolicy=wcms_crop_resize&cropH=608&cropW=1080&xPos=0&yPos=392&width=862&height=485\",\n            \"country\": \"\",\n            \"publishedAt\": \"2021-11-28T19:05:53Z\",\n            \"source\": 2\n        },\n        {\n            \"id\": 814,\n            \"author\": \"Margaret Paul\",\n            \"title\": \"The population in Melbourne's west is booming, but can the planning keep pace?\",\n            \"description\": \"For years, the idea of a mini-CBD at Werribee East has been floated, adopted, and abandoned by government. Now, the community is making a renewed push to put planning for Melbourne's west on the state election agenda.\",\n            \"url\": \"http://www.abc.net.au/news/2021-11-29/werribee-melbourne-suburbs-planning-population-growth/100643594\",\n            \"thumbnailUrl\": \"https://live-production.wcms.abc-cdn.net.au/5e580a52fadf919e809f25e26e0b460e?impolicy=wcms_crop_resize&cropH=2812&cropW=5000&xPos=0&yPos=436&width=862&height=485\",\n            \"country\": \"\",\n            \"publishedAt\": \"2021-11-28T19:05:30Z\",\n            \"source\": 2\n        },\n        {\n            \"id\": 789,\n            \"author\": \"Chloe Hart\",\n            \"title\": \"A-League Women welcomes record number of female coaches in charge\",\n            \"description\": \"There was only one female head coach in Australia's top women's football competition last year, but the upcoming season beginning on December 3 will see that rise to four.\",\n            \"url\": \"http://www.abc.net.au/news/2021-11-29/a-league-women-four-female-coaches-make-history/100657316\",\n            \"thumbnailUrl\": \"https://live-production.wcms.abc-cdn.net.au/e61364d0195681c0ffeeecab46b15c1a?impolicy=wcms_crop_resize&cropH=1127&cropW=2003&xPos=0&yPos=0&width=862&height=485\",\n            \"country\": \"\",\n            \"publishedAt\": \"2021-11-28T19:05:14Z\",\n            \"source\": 2\n        },\n        {\n            \"id\": 790,\n            \"author\": \"Loretta Lohberger\",\n            \"title\": \"Susan Neill-Fraser will find out tomorrow if she can walk free from prison — here's what her appeal is about\",\n            \"description\": \"Neill-Fraser has been fighting to clear her name ever since she was charged with murdering her partner, Bob Chappell, in 2009. A decision in her latest appeal will be handed down almost nine months after her lawyers argued there has been a miscarriage of just…\",\n            \"url\": \"http://www.abc.net.au/news/2021-11-29/susan-neill-fraser-appeal-decision-tuesday-murder-bob-chappell/100656716\",\n            \"thumbnailUrl\": \"https://live-production.wcms.abc-cdn.net.au/a9c5405e1c0bcdbf93b1796e6b2207a6?impolicy=wcms_crop_resize&cropH=541&cropW=960&xPos=0&yPos=32&width=862&height=485\",\n            \"country\": \"\",\n            \"publishedAt\": \"2021-11-28T18:52:35Z\",\n            \"source\": 2\n        },\n        {\n            \"id\": 772,\n            \"author\": \"Fiona Blackwood\",\n            \"title\": \"What happens when your builder goes bust? For some, their life savings disappear\",\n            \"description\": \"Kate and Rod Iskander can only look on in despair at what should be their new home — a building site littered with bricks and hardening bags of cement. Their builder went bust two months ago and they've already sunk their life savings.\",\n            \"url\": \"http://www.abc.net.au/news/2021-11-29/tas-family-despair-as-builder-woes-put-house-dream-in-limbo/100653544\",\n            \"thumbnailUrl\": \"https://live-production.wcms.abc-cdn.net.au/988dc00ee17e27e8d211eb648805ce05?impolicy=wcms_crop_resize&cropH=796&cropW=1415&xPos=0&yPos=1&width=862&height=485\",\n            \"country\": \"\",\n            \"publishedAt\": \"2021-11-28T18:43:01Z\",\n            \"source\": 2\n        },\n        {\n            \"id\": 773,\n            \"author\": \"Kate Christian\",\n            \"title\": \"Rapid antigen tests could form 'line of defence' against COVID-19 when WA eases hard border\",\n            \"description\": \"When Western Australia finally opens its doors to the rest of the world – potentially letting in the Omicron variant of COVID-19 – rapid antigen self-tests could form an important line of defence to prevent  outbreaks in high-risk settings.\",\n            \"url\": \"http://www.abc.net.au/news/2021-11-29/how-rapid-antigen-tests-could-help-stop-spread-of-covid-19/100635968\",\n            \"thumbnailUrl\": \"https://live-production.wcms.abc-cdn.net.au/9155795ae89e139fc23c522f4065fd2f?impolicy=wcms_crop_resize&cropH=2268&cropW=4032&xPos=0&yPos=284&width=862&height=485\",\n            \"country\": \"\",\n            \"publishedAt\": \"2021-11-28T18:39:34Z\",\n            \"source\": 2\n        },\n        {\n            \"id\": 774,\n            \"author\": \"Barbara Miller, Peter Jones\",\n            \"title\": \"Ghislaine Maxwell's trial is finally set to begin. This is what could lie ahead for Jeffrey Epstein's former partner\",\n            \"description\": \"Sixteen months after FBI agents swooped in on her remote hideaway to arrest Ghislaine Maxwell on sex abuse charges, the trial of the British socialite is beginning in New York. Here's what you need to know.\",\n            \"url\": \"http://www.abc.net.au/news/2021-11-29/ghislaine-maxwell-associate-of-jeffrey-epstein-on-trial/100645782\",\n            \"thumbnailUrl\": \"https://live-production.wcms.abc-cdn.net.au/e2daf43f15fdb398c64addb8c90192e8?impolicy=wcms_crop_resize&cropH=1316&cropW=2339&xPos=364&yPos=759&width=862&height=485\",\n            \"country\": \"\",\n            \"publishedAt\": \"2021-11-28T18:38:20Z\",\n            \"source\": 2\n        },\n        {\n            \"id\": 775,\n            \"author\": \"Nassim Khadem\",\n            \"title\": \"A death tax by stealth? Your superannuation savings could be subject to a hefty tax when you die\",\n            \"description\": \"It's not called a 'death tax', but millions of Australians' retirement savings may be taxable upon death, writes Nassim Khadem.\",\n            \"url\": \"http://www.abc.net.au/news/2021-11-29/death-tax-by-stealth-superannuation-savings-retirement-investing/100644100\",\n            \"thumbnailUrl\": \"https://live-production.wcms.abc-cdn.net.au/e3ee3b767cb890c9fa185bb5d5071938?impolicy=wcms_crop_resize&cropH=360&cropW=640&xPos=0&yPos=25&width=862&height=485\",\n            \"country\": \"\",\n            \"publishedAt\": \"2021-11-28T18:37:10Z\",\n            \"source\": 2\n        },\n        {\n            \"id\": 776,\n            \"author\": \"ABC News\",\n            \"title\": \"Father manufactures medicine for sick son in China after COVID-19 limits treatment\",\n            \"description\": \"A desperate father is manufacturing medicine for his sick son after he was unable to get treatment in his country due to COVID-19.\",\n            \"url\": \"http://www.abc.net.au/news/2021-11-29/dad-manufactures-medicine-for-sick-son-china/100645022\",\n            \"thumbnailUrl\": \"https://live-production.wcms.abc-cdn.net.au/4e43457ef5dc377a959fc1195a632b90?impolicy=wcms_crop_resize&cropH=2813&cropW=5000&xPos=0&yPos=257&width=862&height=485\",\n            \"country\": \"\",\n            \"publishedAt\": \"2021-11-28T18:36:35Z\",\n            \"source\": 2\n        },\n        {\n            \"id\": 718,\n            \"author\": \"Heath Parkes-Hupton\",\n            \"title\": \"New report calls on greater Commonwealth investment to curb public housing crisis\",\n            \"description\": \"After falling into an unexpected cycle of disadvantage, Ashlie Stevenson is one of hundreds of thousands of Australians languishing on waiting lists for public housing.\",\n            \"url\": \"http://www.abc.net.au/news/2021-11-29/new-report-details-australias-public-housing-crisis/100654622\",\n            \"thumbnailUrl\": \"https://live-production.wcms.abc-cdn.net.au/9890501fa27e98f533a5d13aca22f014?impolicy=wcms_crop_resize&cropH=2269&cropW=4033&xPos=0&yPos=139&width=862&height=485\",\n            \"country\": \"\",\n            \"publishedAt\": \"2021-11-28T18:12:14Z\",\n            \"source\": 2\n        },\n        {\n            \"id\": 526,\n            \"author\": \"JOHN FLESHER AP Environmental Writer\",\n            \"title\": \"Community systems offer alternative paths for solar growth\",\n            \"description\": \"\",\n            \"url\": \"https://abcnews.go.com/Business/wireStory/community-systems-offer-alternative-paths-solar-growth-81432141\",\n            \"thumbnailUrl\": \"null\",\n            \"country\": \"\",\n            \"publishedAt\": \"2021-11-28T18:02:53Z\",\n            \"source\": 1\n        },\n        {\n            \"id\": 527,\n            \"author\": \"ABC News\",\n            \"title\": \"Australia's housing affordability crisis is an even bigger challenge for young people with a disability\",\n            \"description\": \"The housing affordability crisis is being felt acutely by young people with a disability, partly because the hidden costs of having a disability can make it much more difficult to save a deposit and pay off a mortgage.\",\n            \"url\": \"http://www.abc.net.au/news/2021-11-29/housing-affordability-disability-challenge-first-home-buyer/100639948\",\n            \"thumbnailUrl\": \"https://live-production.wcms.abc-cdn.net.au/f27276594fa2f3da58be32fcee547a87?impolicy=wcms_crop_resize&cropH=844&cropW=1500&xPos=0&yPos=0&width=862&height=485\",\n            \"country\": \"\",\n            \"publishedAt\": \"2021-11-28T18:00:00Z\",\n            \"source\": 2\n        },\n        {\n            \"id\": 532,\n            \"author\": \"The Associated Press\",\n            \"title\": \"Swiss vote to approve COVID restrictions as infections rise\",\n            \"description\": \"\",\n            \"url\": \"https://abcnews.go.com/Health/wireStory/swiss-vote-approve-covid-restrictions-infections-rise-81431684\",\n            \"thumbnailUrl\": \"https://s.abcnews.com/images/Health/WireAP_f9020f367bd84c939334d819a7b90ef1_16x9_992.jpg\",\n            \"country\": \"\",\n            \"publishedAt\": \"2021-11-28T17:18:10Z\",\n            \"source\": 1\n        }\n    ]\n}"
+						}
+					]
 				}
 			]
 		}
@@ -287,7 +1451,7 @@
 		"apikey": [
 			{
 				"key": "value",
-				"value": "Token 7a7fc6d602f619dcc63f93a0dd084a5db0d6cda1",
+				"value": "Token e1929cfb8c93f69a40b3de0678b88cbd22a7b90c",
 				"type": "string"
 			},
 			{
