@@ -12,18 +12,21 @@ logger = log.get_logger(__name__)
 
 
 def feed(user):
-    setting: UserSettings = UserSettings.objects.get(user=user)
+    try:
+        setting: UserSettings = UserSettings.objects.get(user=user)
 
-    preferred_sources = list(setting.sources.all())
-    preferred_sources += list(
-        SourceModel.objects.filter(country__in=setting.countries.split(","))
-    )
+        preferred_sources = list(setting.sources.all())
+        preferred_sources += list(
+            SourceModel.objects.filter(country__in=setting.countries.split(","))
+        )
 
-    headlines = TopHeadlineModel.objects.filter(source__in=preferred_sources)
+        headlines = TopHeadlineModel.objects.filter(source__in=preferred_sources)
 
-    newsfeed, created = NewsFeedModel.objects.get_or_create(user=user)
+        newsfeed, created = NewsFeedModel.objects.get_or_create(user=user)
 
-    newsfeed.topHeadlines.set(headlines)
+        newsfeed.topHeadlines.set(headlines)
+    except:
+        logger.debug(f"UserSettings not found for {user}")
 
 
 def populate_newsfeed_sync():
